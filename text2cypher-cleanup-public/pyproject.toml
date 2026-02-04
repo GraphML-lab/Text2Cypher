@@ -1,0 +1,52 @@
+[project]
+name = "text2cypher-cleanup"
+version = "0.1.0"
+description = "Toolkit for dataset cleaning"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "Apache-2.0"}
+authors = [
+    {name = "Yilin Huang", email = "lamkera.hyl@gmail.com"},
+    {name = "makbule ozsoy", email = "makbule.ozsoy@neo4j.com"}
+]
+keywords = ["dataset", "text2cypher", "neo4j", "huggingface"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "accelerate>=1.11.0",
+    "datasets>=2.14.0",
+    "dotenv>=0.9.9",
+    "fastparquet>=2024.11.0",
+    "langchain>=1.0.1",
+    "langchain-core>=0.3.78",
+    "langchain-deepseek>=1.0.0",
+    "langchain-openai>=0.3.35",
+    "neo4j>=5.28.2",
+    "outlines>=1.2.7",
+    "pyarrow>=21.0.0",
+    "pytest>=8.4.1",
+    "pytest-pythonpath>=0.7.3",
+    "torch>=2.9.0",
+    "transformers>=4.57.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/mgozsoy-neo4j/text2cypher-cleanup"
+Repository = "https://github.com/mgozsoy-neo4j/text2cypher-cleanup.git"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/t2c_cleanup"]
+
+[tool.ruff.lint]
+ignore = ["UP045", "UP007"]  # Disable "Use X | None" and "Use X | Y for type annotations" suggestions
