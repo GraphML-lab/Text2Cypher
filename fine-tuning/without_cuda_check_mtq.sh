@@ -1,0 +1,2 @@
+export DS_SKIP_CUDA_CHECK=1
+deepspeed lora_fine_tuning_with_ds_mtq.py
