@@ -1,10 +1,10 @@
 Github Repo to Thesis named "Think Beyond LLM: Can Agentic Workflow outperform Fine Tuned LLM in terms of Text2Cypher?" in GraphML Lab.
 
 I was told that it's pretty likely that someone would try to reproduce my experiments. I think using AI to write the readme.md won't make my life that easy so i would write some hints.
+
 First, read my thesis, if you could and would like to.
 
 Second, to fine tune LLMs, use the scripts in "fine-tuning" folder and dependencies could be installed by running uv sync. Please be advised that you might have to choose a specific torch that works on your machine. Change the paths of datasets and then you are good to go. To fine tune LLMs using Mind the query dataset using lora_fine_tuning_with_ds_mtq.py, deploy Neo4j docker containers accordingly first, which could be found in Neo4j github repos. A little bit tedious.
-
 If you run into some errors such as "current loss scale already in minimum" during fine tuning, simply rerun it because fine tuning is stochastic.
 Fine tuning would sometimes raise error in the middle. Rerun it.
 At the end of fine tuning, my code snippet would try to merge lora model (or lora adapter, if you find it easier to understand) and base model and save the combination as a standalone LLM. Sometimes this attempt would fail. Use merge_peft to merge them explicitly if it fails.
