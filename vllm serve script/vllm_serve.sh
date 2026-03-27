@@ -1,2 +1,0 @@
-export CUDA_VISIBLE_DEVICES=1
-vllm serve /data/home/yilin/projects/lora-fine-tuned-llm/granite-20b-code-instruct-8k-lora-tuned --dtype auto --api-key abc --max-model-len 2048 --gpu-memory-utilization 0.96
