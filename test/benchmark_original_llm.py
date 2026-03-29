@@ -19,7 +19,7 @@ client = OpenAI(
 )
 is_seed = False
 is_gpt = False
-model_name: str = "granite-20b-code-instruct-8k"
+model_name: str = "your_model_goes_here"
 
 
 if model_name == "Seed-OSS-36B-Instruct":

@@ -19,7 +19,7 @@ client = OpenAI(
     base_url="http://localhost:8000/v1", api_key="abc", timeout=70.0, max_retries=2
 )
 is_seed = False
-model_name: str = "Phi-3-medium-128k-instruct-lora-tuned"
+model_name: str = "your_model_name_goes_here"
 
 if (
     model_name

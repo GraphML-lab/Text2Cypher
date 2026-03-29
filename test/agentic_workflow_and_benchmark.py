@@ -219,7 +219,7 @@ if __name__ == "__main__":
     counter_for_debug = 0
     cyver_pass_counter = 0
 
-    model_name = "granite-20b-code-instruct-8k"
+    model_name = "your_model_name_goes_here"
 
     openai_client = OpenAI(
         base_url="http://localhost:8000/v1", api_key="abc", timeout=30.0, max_retries=1
