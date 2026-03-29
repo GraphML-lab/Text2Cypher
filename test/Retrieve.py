@@ -22,10 +22,10 @@ embedding_model = HuggingFaceEmbeddings(
     model_name="sentence-transformers/all-MiniLM-L6-v2",
     model_kwargs={"trust_remote_code": True},
 )
-if not os.path.exists("/data/home/yilin/projects/test/data"):
-    os.makedirs("/data/home/yilin/projects/test/data")
+if not os.path.exists("root_dir_you_like/projects/test/data"):
+    os.makedirs("root_dir_you_like/projects/test/data")
 ## --- 2. Database and Store Paths ---
-URI = "/data/home/yilin/projects/test/data/milvus.db"
+URI = "root_dir_you_like/projects/test/data/milvus.db"
 COLLECTION_NAME = "Cypher_Docs"
 
 
@@ -94,7 +94,7 @@ vector_store = Milvus(
     index_params={"index_type": "FLAT", "metric_type": "IP"},
     auto_id=True,
 )
-store_path = "/data/home/yilin/projects/test/data/docstore"
+store_path = "root_dir_you_like/projects/test/data/docstore"
 if not os.path.exists(store_path):
     os.makedirs(store_path)
 base_store = LocalFileStore(store_path)
@@ -116,7 +116,7 @@ parent_retriever = ParentDocumentRetriever(
 )
 
 # --- 6. Populate Stores if Empty ---
-if not os.path.exists("/data/home/yilin/projects/test/data/populated.txt"):
+if not os.path.exists("root_dir_you_like/projects/test/data/populated.txt"):
     parent_docs = get_parent_html_chunks(
         "https://neo4j.com/docs/cypher-cheat-sheet/5/neo4j-community/"
     )
@@ -124,7 +124,7 @@ if not os.path.exists("/data/home/yilin/projects/test/data/populated.txt"):
         doc_ids = [str(i) for i in range(len(parent_docs))]
 
         parent_retriever.add_documents(parent_docs, ids=doc_ids, add_to_docstore=True)
-        with open("/data/home/yilin/projects/test/data/populated.txt", "w") as f:
+        with open("root_dir_you_like/projects/test/data/populated.txt", "w") as f:
             f.write("done")
     else:
         print("Failed to load documents. Exiting.")

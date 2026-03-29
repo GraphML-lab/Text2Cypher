@@ -70,7 +70,7 @@ def compute_metrics(eval_pred: EvalPrediction):
         port = table[database_targeted]
         database_driver = GraphDatabase.driver(
             f"neo4j://localhost:{port}",
-            auth=("neo4j", "Hyl051123"),
+            auth=("neo4j", "password"),
             database="neo4j",
             connection_timeout=10.0,
             liveness_check_timeout=10.0,
@@ -109,14 +109,14 @@ def format_prompt(example):
 
 def start_train(llm_name, eval_dataset, train_dataset):
     global tokenizer
-    path_model = f"/data/home/yilin/projects/llm/{llm_name}"
+    path_model = f"root_dir_you_like/projects/llm/{llm_name}"
     tokenizer = AutoTokenizer.from_pretrained(
         path_model, trust_remote_code=True, use_fast=True, padding_side="left"
     )
 
-    output_dir_lora = f"/data/home/yilin/projects/lora-models-mtq/{llm_name}-lora"
+    output_dir_lora = f"root_dir_you_like/projects/lora-models-mtq/{llm_name}-lora"
     merged_model_dir = (
-        f"/data/home/yilin/projects/lora-fine-tuned-llm-mtq/{llm_name}-lora-tuned"
+        f"root_dir_you_like/projects/lora-fine-tuned-llm-mtq/{llm_name}-lora-tuned"
     )
 
     torch.cuda.empty_cache()
@@ -207,7 +207,7 @@ def start_train(llm_name, eval_dataset, train_dataset):
 if "__main__" == __name__:  # entry of program
     train_dataset = load_dataset(
         "json",
-        data_files="/data/home/yilin/projects/fine-tuning/train_mtq.json",
+        data_files="root_dir_you_like/projects/fine-tuning/train_mtq.json",
         split = "train"
     )
     # format it using format_prompt (if the model does have chat_template, it would raise errors)
@@ -218,7 +218,7 @@ if "__main__" == __name__:  # entry of program
 
     eval_dataset = load_dataset(
         "json",
-        data_files="/data/home/yilin/projects/fine-tuning/eval_mtq.json",
+        data_files="root_dir_you_like/projects/fine-tuning/eval_mtq.json",
         split="train"
     )
 
@@ -227,5 +227,5 @@ if "__main__" == __name__:  # entry of program
         remove_columns=eval_dataset.column_names,
     )
     length_of_eval_dataset = len(eval_dataset)
-    print(f"the size of eval dataset is {length_of_eval_dataset}")
-    start_train("Qwen2.5-32B-Instruct", eval_dataset, train_dataset)
+    
+    start_train("your_model_goes_here", eval_dataset, train_dataset)

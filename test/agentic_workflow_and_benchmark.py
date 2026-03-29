@@ -19,7 +19,7 @@ def structured_response(llm: str, messages, response_format):
         extra_body = {"chat_template_kwargs": {"thinking_budget": 0}}
 
     completion = openai_client.beta.chat.completions.parse(
-        model=f"/data/home/yilin/projects/llm/{llm}",
+        model=f"root_dir_you_like/projects/llm/{llm}",
         messages=messages,
         response_format=response_format,
         extra_body=extra_body,
@@ -225,7 +225,7 @@ if __name__ == "__main__":
         base_url="http://localhost:8000/v1", api_key="abc", timeout=30.0, max_retries=1
     )
 
-    with open(r"/data/home/yilin/projects/test/benchmark_dataset.json", "r") as f:
+    with open(r"root_dir_you_like/projects/test/benchmark_dataset.json", "r") as f:
         test_dataset = json.load(f)
 
     mapping_of_db_name_to_port = {
@@ -244,7 +244,7 @@ if __name__ == "__main__":
         port = mapping_of_db_name_to_port[item["database"]]
         database_driver = GraphDatabase.driver(
             f"neo4j://localhost:{port}",
-            auth=("neo4j", "Hyl051123"),
+            auth=("neo4j", "password"),
             database="neo4j",
             connection_timeout=10.0,
             liveness_check_timeout=10.0,
@@ -285,7 +285,7 @@ if __name__ == "__main__":
     record = f"Score on Benchmark for original LLM ({model_name}): {correct_cypher_query_counter / len(test_dataset)} wrapped in agentic workflow and the CyVer pass rate is:{cyver_pass_counter / len(test_dataset)}\n"
     print(record)
     with open(
-        "/data/home/yilin/projects/test/results_of_experiments.txt",
+        "root_dir_you_like/projects/test/results_of_experiments.txt",
         "a",
         encoding="utf-8",
     ) as f:

@@ -4,7 +4,7 @@ from neo4j import GraphDatabase
 import neo4j
 from openai import OpenAI
 
-with open(r"/data/home/yilin/projects/test/benchmark_dataset.json", "r") as f:
+with open(r"root_dir_you_like/projects/test/benchmark_dataset.json", "r") as f:
     test_dataset = json.load(f)
 
 mapping_of_db_name_to_port = {
@@ -31,12 +31,12 @@ for item in test_dataset:  # item is a dict
     print("-" * 10 + str(counter_for_debug) + "-" * 10)
     port = mapping_of_db_name_to_port[item["database"]]
     database_driver = GraphDatabase.driver(
-        f"neo4j://localhost:{port}", auth=("neo4j", "Hyl051123"), database="neo4j", connection_timeout = 10.0, liveness_check_timeout=10.0
+        f"neo4j://localhost:{port}", auth=("neo4j", "password"), database="neo4j", connection_timeout = 10.0, liveness_check_timeout=10.0
     )
 
     if is_seed:
         completion = client.chat.completions.create(
-            model="/data/home/yilin/projects/llm/Seed-OSS-36B-Instruct",
+            model="root_dir_you_like/projects/llm/Seed-OSS-36B-Instruct",
             messages=[
                 {
                     "role": "system",
@@ -53,7 +53,7 @@ for item in test_dataset:  # item is a dict
         )
     else:
         completion = client.chat.completions.create(
-            model=f"/data/home/yilin/projects/llm/{model_name}",
+            model=f"root_dir_you_like/projects/llm/{model_name}",
             messages=[
                 {
                     "role": "system",
@@ -98,7 +98,7 @@ for item in test_dataset:  # item is a dict
 record = f"Score on Benchmark for original LLM ({model_name}): {correct_cypher_query_counter / len(test_dataset)} and the CyVer pass rate is:{cyver_pass_counter / len(test_dataset)}\n"
 print(record)
 with open(
-    "/data/home/yilin/projects/test/results_of_experiments.txt", "a", encoding="utf-8"
+    "root_dir_you_like/projects/test/results_of_experiments.txt", "a", encoding="utf-8"
 ) as f:
     f.write(record)
 
