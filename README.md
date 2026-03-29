@@ -318,5 +318,3 @@ If you are trying to reproduce this work, the “sharp edges” are usually:
 2. Matching Torch/CUDA versions
 3. Setting up multiple Neo4j instances + data import
 4. Hard-coded absolute paths and credentials inside scripts
-
-If you want, tell me your OS/GPU/CUDA version and which step you’re stuck on, and I can help translate the hard-coded paths/ports into a clean local setup.
