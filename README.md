@@ -6,7 +6,7 @@ This repo accompanies my thesis:
 
 If you want the *full* experimental context (datasets, Neo4j instances/data import, evaluation details), the thesis is the source of truth.
 
-This README is a **practical reproduction guide**: which folders to use, what to install, and which scripts to run.
+This README is a **suggested cookbook**: which folders to use, what to install, and which scripts to run.
 
 ---
 
